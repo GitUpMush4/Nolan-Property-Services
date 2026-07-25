@@ -169,30 +169,15 @@ ul { padding-left: 1.2em; }
 .logo {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 1.15rem;
-  color: var(--color-dark);
 }
 .logo:hover { text-decoration: none; }
 .logo-mark {
-  width: 40px;
-  height: 40px;
+  height: 58px;
+  width: auto;
   flex-shrink: 0;
   transition: transform 0.4s var(--ease-bounce);
 }
-.logo:hover .logo-mark { transform: rotate(-10deg) scale(1.08); }
-.logo-text { line-height: 1.1; }
-.logo-text small {
-  display: block;
-  font-family: var(--font-body);
-  font-weight: 500;
-  font-size: 0.68rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--color-text-muted);
-}
+.logo:hover .logo-mark { transform: rotate(-6deg) scale(1.05); }
 
 .main-nav {
   display: flex;
@@ -573,16 +558,17 @@ ul { padding-left: 1.2em; }
   border-bottom: 1px solid rgba(255,255,255,0.12);
 }
 .footer-logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: var(--color-white);
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 1.1rem;
+  display: inline-block;
   margin-bottom: 14px;
 }
 .footer-logo:hover { text-decoration: none; }
+.footer-logo-mark {
+  height: 130px;
+  width: auto;
+  display: block;
+  transition: transform 0.4s var(--ease-bounce);
+}
+.footer-logo:hover .footer-logo-mark { transform: rotate(-4deg) scale(1.04); }
 .site-footer h4 {
   color: var(--color-white);
   font-size: 0.95rem;
