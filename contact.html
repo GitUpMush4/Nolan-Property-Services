@@ -56,7 +56,7 @@
 </div>
 
 <section class="hero" style="padding-bottom:10px;">
-  <div class="container" style="position:relative; padding:56px 0 48px; text-align:center;">
+  <div class="container" style="position:relative; padding:56px 20px 48px; text-align:center;">
     <span class="eyebrow" style="color:#C9F27A;">Contact Us</span>
     <h1 style="color:#fff;">Get a Free, <span class="marker-highlight">No-Obligation Quote</span></h1>
     <p class="hero-lead" style="margin:0 auto;">Call, email or send us your details below and we'll get back to you quickly.</p>
@@ -69,7 +69,7 @@
       <h2>Request a Quote</h2>
       <p>Fill in the form and we'll be in touch to discuss your job.</p>
 
-      <form id="lead-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <form id="lead-form" action="https://formspree.io/f/mgogppwa" method="POST" enctype="multipart/form-data">
         <div class="form-grid">
           <div class="form-field">
             <label for="name">Full Name</label>
@@ -104,6 +104,11 @@
           <div class="form-field full">
             <label for="message">Tell Us About the Job</label>
             <textarea id="message" name="message" rows="5" placeholder="What needs doing? Rough timescale, property details, anything useful..."></textarea>
+          </div>
+          <div class="form-field full">
+            <label for="photo">Upload a Photo (optional)</label>
+            <input type="file" id="photo" name="attachment" accept="image/*">
+            <p class="form-note" style="margin:0;">A quick photo of the job helps us quote more accurately.</p>
           </div>
         </div>
 

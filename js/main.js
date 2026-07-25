@@ -62,10 +62,19 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  // Draw in the marker-highlight underline shortly after load
-  document.querySelectorAll('.marker-highlight').forEach(function (el) {
-    setTimeout(function () { el.classList.add('in-view'); }, 500);
-  });
+  // Draw in the marker-highlight underline shortly after load.
+  // Double rAF ensures the browser has painted the 0% state at least once
+  // before we flip the class, otherwise the transition can silently no-op.
+  var markerEls = document.querySelectorAll('.marker-highlight');
+  if (markerEls.length) {
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        setTimeout(function () {
+          markerEls.forEach(function (el) { el.classList.add('in-view'); });
+        }, 400);
+      });
+    });
+  }
 
   // Count up the "100%" stat when it scrolls into view
   var countEl = document.querySelector('.review-score .big');
@@ -93,6 +102,35 @@ document.addEventListener('DOMContentLoaded', function () {
       countObserver.observe(countEl);
     }
   }
+
+  // Hero background photo carousel (blurred real job photos, crossfading)
+  var heroBgImages = ['images/hero-bg-1.jpg', 'images/hero-bg-2.jpg', 'images/hero-bg-3.jpg', 'images/hero-bg-4.jpg'];
+  document.querySelectorAll('.hero').forEach(function (hero) {
+    var slidesWrap = document.createElement('div');
+    slidesWrap.className = 'hero-bg-slides';
+    slidesWrap.setAttribute('aria-hidden', 'true');
+    heroBgImages.forEach(function (src, i) {
+      var slide = document.createElement('div');
+      slide.className = 'hero-bg-slide' + (i === 0 ? ' active' : '');
+      slide.style.backgroundImage = 'url(' + src + ')';
+      slidesWrap.appendChild(slide);
+    });
+    hero.insertBefore(slidesWrap, hero.firstChild);
+
+    var overlay = document.createElement('div');
+    overlay.className = 'hero-bg-overlay';
+    hero.insertBefore(overlay, slidesWrap.nextSibling);
+
+    if (!reducedMotion && heroBgImages.length > 1) {
+      var slides = slidesWrap.querySelectorAll('.hero-bg-slide');
+      var current = 0;
+      setInterval(function () {
+        slides[current].classList.remove('active');
+        current = (current + 1) % slides.length;
+        slides[current].classList.add('active');
+      }, 6000);
+    }
+  });
 
   // Cursor-follow glow in the hero — desktop pointer devices only
   var canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
