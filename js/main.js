@@ -1,4 +1,4 @@
-// Nolan Property Services LTD — shared site behaviour
+// Nolan Property Services — shared site behaviour
 
 document.addEventListener('DOMContentLoaded', function () {
   // Mobile nav toggle
@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function () {
       var formAction = form.getAttribute('action');
 
       if (!formAction || formAction.indexOf('YOUR_FORM_ID') !== -1) {
-        showStatus('error', 'Online form isn’t connected yet — please call 07437 004809 or email info@nolanpropertyservices.co.uk and we’ll get back to you.');
+        showStatus('error', 'Online form isn’t connected yet — please call 07437 004809 or email enquiries@nolanpropertyservices.co.uk and we’ll get back to you.');
         return;
       }
 
