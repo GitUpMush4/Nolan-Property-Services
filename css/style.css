@@ -667,6 +667,15 @@ ul { padding-left: 1.2em; }
 }
 
 @media (max-width: 780px) {
+  .trust-strip .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 12px;
+    justify-content: stretch;
+    text-align: left;
+  }
+  .trust-item { font-size: 0.82rem; }
+
   .main-nav {
     display: flex;
     flex-direction: column;
