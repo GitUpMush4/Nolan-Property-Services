@@ -1,6 +1,18 @@
 // Nolan Property Services — shared site behaviour
 
 document.addEventListener('DOMContentLoaded', function () {
+  // Gallery "See More Photos" expand buttons
+  document.querySelectorAll('[data-see-more]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var category = document.getElementById(btn.getAttribute('data-see-more'));
+      if (!category) return;
+      category.querySelectorAll('.photo-tile.is-hidden').forEach(function (tile) {
+        tile.classList.remove('is-hidden');
+      });
+      btn.remove();
+    });
+  });
+
   // Mobile nav toggle
   var header = document.querySelector('.site-header');
   var navToggle = document.querySelector('.nav-toggle');
