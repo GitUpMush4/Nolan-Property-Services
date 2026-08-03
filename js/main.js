@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', function () {
       var formAction = form.getAttribute('action');
 
       if (!formAction || formAction.indexOf('YOUR_FORM_ID') !== -1) {
-        showStatus('error', 'Online form isn’t connected yet — please call 07437 004809 or email enquiries@nolanpropertyservices.co.uk and we’ll get back to you.');
+        showStatus('error', 'Online form isn’t connected yet. Please call 07437 004809 or email enquiries@nolanpropertyservices.co.uk and we’ll get back to you.');
         return;
       }
 
@@ -177,7 +177,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(function (response) {
           if (response.ok) {
             form.reset();
-            showStatus('success', 'Thanks — your enquiry has been sent. We’ll be in touch shortly.');
+            showStatus('success', 'Thanks, your enquiry has been sent. We’ll be in touch shortly.');
           } else {
             showStatus('error', 'Something went wrong sending your enquiry. Please call 07437 004809 instead.');
           }
