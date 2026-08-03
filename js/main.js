@@ -169,15 +169,6 @@ document.addEventListener('DOMContentLoaded', function () {
       submitBtn.disabled = true;
       submitBtn.textContent = 'Sending...';
 
-      var fileInput = form.querySelector('input[type="file"]');
-      var hasFile = fileInput && fileInput.files && fileInput.files.length > 0;
-
-      function submitWithoutAttachment() {
-        var fd = new FormData(form);
-        if (fileInput) fd.delete(fileInput.name);
-        return fetch(formAction, { method: 'POST', body: fd, headers: { Accept: 'application/json' } });
-      }
-
       fetch(formAction, {
         method: 'POST',
         body: new FormData(form),
@@ -187,21 +178,9 @@ document.addEventListener('DOMContentLoaded', function () {
           if (response.ok) {
             form.reset();
             showStatus('success', 'Thanks — your enquiry has been sent. We’ll be in touch shortly.');
-            return;
+          } else {
+            showStatus('error', 'Something went wrong sending your enquiry. Please call 07437 004809 instead.');
           }
-          if (hasFile) {
-            // Photo attachments aren't supported on the current Formspree plan —
-            // resend without the file so the enquiry itself still goes through.
-            return submitWithoutAttachment().then(function (retryResponse) {
-              if (retryResponse.ok) {
-                form.reset();
-                showStatus('success', 'Thanks — your enquiry has been sent (we couldn’t attach the photo, sorry — feel free to email it to enquiries@nolanpropertyservices.co.uk). We’ll be in touch shortly.');
-              } else {
-                showStatus('error', 'Something went wrong sending your enquiry. Please call 07437 004809 instead.');
-              }
-            });
-          }
-          showStatus('error', 'Something went wrong sending your enquiry. Please call 07437 004809 instead.');
         })
         .catch(function () {
           showStatus('error', 'Something went wrong sending your enquiry. Please call 07437 004809 instead.');
